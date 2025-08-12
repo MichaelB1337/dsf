@@ -127,39 +127,39 @@
 		},
 
     "dsf-directive-block": {
-      "patterns": [
-        {
-          "name": "meta.directive.dsf",
-          "begin": "(:[A-Z][A-Z0-9_]*)\\b",
-          "beginCaptures": {
-            "1": { "name": "keyword.other.dsf" }
-          },
-          "end": "\\.",
-          "endCaptures": {
-            "0": { "name": "punctuation.terminator.directive.dsf" }
-          },
-          "applyEndPatternLast": true,
-          "patterns": [
-            { "match": "[ \\t]+", "name": "text.whitespace" },
-            { "match": "\\b([A-Z][A-Z0-9_]*)\\b", "name": "entity.other.attribute-name.xml" },
-            { "match": "=", "name": "punctuation.separator.key-value.xml" },
-            {
-              "begin": "\"",
-              "end": "\"",
-              "name": "string.quoted.double.xml",
-              "patterns": [{ "match": "\\\\.", "name": "constant.character.escape.xml" }]
-            },
-            {
-              "begin": "'",
-              "end": "'",
-              "name": "string.quoted.single.xml",
-              "patterns": [{ "match": "\\\\.", "name": "constant.character.escape.xml" }]
-            },
-            { "match": "[^\\.\\s]+", "name": "string.unquoted.dsf" }
-          ]
-        }
-      ]
-    },
+			"patterns": [
+				{
+					"name": "meta.directive.dsf",
+					"begin": "(:[A-Z][A-Z0-9_]*)\\b",
+					"beginCaptures": {
+						"1": { "name": "keyword.other.dsf" }
+					},
+					"end": "(\\.)",
+					"endCaptures": {
+						"1": { "name": "keyword.other.dsf" }
+					},
+					"applyEndPatternLast": true,
+					"patterns": [
+						{ "match": "[ \\t]+", "name": "text.whitespace" },
+						{ "match": "\\b([A-Z][A-Z0-9_]*)\\b", "name": "entity.other.attribute-name.xml" },
+						{ "match": "=", "name": "punctuation.separator.key-value.xml" },
+						{
+							"begin": "\"",
+							"end": "\"",
+							"name": "string.quoted.double.xml",
+							"patterns": [{ "match": "\\\\.", "name": "constant.character.escape.xml" }]
+						},
+						{
+							"begin": "'",
+							"end": "'",
+							"name": "string.quoted.single.xml",
+							"patterns": [{ "match": "\\\\.", "name": "constant.character.escape.xml" }]
+						},
+						{ "match": "[^\\.\\s]+", "name": "string.unquoted.dsf" }
+					]
+				}
+			]
+		},
 
     "dsf-inline-commands": {
       "patterns": [

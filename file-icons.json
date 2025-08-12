@@ -1,0 +1,10 @@
+{
+  "iconDefinitions": {
+    "dsf-icon": {
+      "iconPath": "./images/fileIcon.svg"
+    }
+  },
+  "fileExtensions": {
+    "dsf": "dsf-icon"
+  }
+}

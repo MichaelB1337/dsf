@@ -98,32 +98,33 @@
     },
 
     "tags": {
-      "patterns": [
-        {
-          "name": "meta.tag.xml",
-          "begin": "(<)\\s*([:A-Za-z_][A-Za-z0-9_\\-\\.]*)",
-          "beginCaptures": {
-            "1": { "name": "punctuation.definition.tag.begin.xml" },
-            "2": { "name": "entity.name.tag.xml" }
-          },
-          "end": "(/?)(>)",
-          "endCaptures": {
-            "1": { "name": "punctuation.definition.tag.end.xml" },
-            "2": { "name": "punctuation.definition.tag.end.xml" }
-          },
-          "patterns": [{ "include": "#xml-attributes" }]
-        },
-        {
-          "name": "meta.tag.xml",
-          "match": "(<)\\s*/\\s*([:A-Za-z_][A-Za-z0-9_\\-\\.]*)\\s*(>)",
-          "captures": {
-            "1": { "name": "punctuation.definition.tag.begin.xml" },
-            "2": { "name": "entity.name.tag.xml" },
-            "3": { "name": "punctuation.definition.tag.end.xml" }
-          }
-        }
-      ]
-    },
+			"patterns": [
+				{
+					"name": "meta.tag.xml",
+					"begin": "(<)\\s*([:A-Za-z_][A-Za-z0-9_\\-\\.]*)",
+					"beginCaptures": {
+						"1": { "name": "punctuation.definition.tag.begin.xml" },
+						"2": { "name": "entity.name.tag.xml" }
+					},
+					"end": "(/?)(>)",
+					"endCaptures": {
+						"1": { "name": "punctuation.definition.tag.self-closing.xml" },
+						"2": { "name": "punctuation.definition.tag.end.xml" }
+					},
+					"patterns": [{ "include": "#xml-attributes" }]
+				},
+				{
+					"name": "meta.tag.xml",
+					"match": "(<)(/)([:A-Za-z_][A-Za-z0-9_\\-\\.]*)\\s*(>)",
+					"captures": {
+						"1": { "name": "punctuation.definition.tag.begin.xml" },
+						"2": { "name": "punctuation.definition.tag.begin.xml" }, 
+						"3": { "name": "entity.name.tag.xml" },
+						"4": { "name": "punctuation.definition.tag.end.xml" }
+					}
+				}
+			]
+		},
 
     "dsf-directive-block": {
       "patterns": [

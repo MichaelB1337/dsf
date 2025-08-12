@@ -1,0 +1,25 @@
+{
+  "name": "dsf",
+  "displayName": "dsf",
+  "description": "Syntax highlighting for .dsf files",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.103.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "dsf",
+      "aliases": ["dsf", "dsf"],
+      "extensions": [".dsf"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "dsf",
+      "scopeName": "source.dsf",
+      "path": "./syntaxes/dsf.tmLanguage.json"
+    }]
+  }
+}

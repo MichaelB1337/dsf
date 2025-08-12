@@ -4,11 +4,11 @@
   "displayName": "DSF Highlighter",
   "publisher": "michaelbergmann",
   "description": "Syntax highlighting for .dsf files",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "repository": {
-  "type": "git",
-  "url": "https://github.com/MichaelB1337/dsf"
+    "type": "git",
+    "url": "https://github.com/MichaelB1337/dsf"
   },
   "engines": {
     "vscode": "^1.103.0"
@@ -17,23 +17,32 @@
     "Programming Languages"
   ],
   "contributes": {
-    "languages": [{
-      "id": "dsf",
-      "aliases": ["dsf", "dsf"],
-      "extensions": [".dsf"],
-      "configuration": "./language-configuration.json"
-    }],
-    "grammars": [{
-      "language": "dsf",
-      "scopeName": "source.dsf",
-      "path": "./syntaxes/dsf.tmLanguage.json"
-    }],
+    "languages": [
+      {
+        "id": "dsf",
+        "aliases": [
+          "dsf",
+          "dsf"
+        ],
+        "extensions": [
+          ".dsf"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "dsf",
+        "scopeName": "source.dsf",
+        "path": "./syntaxes/dsf.tmLanguage.json"
+      }
+    ],
     "iconThemes": [
-    {
-      "id": "dsf-icons",
-      "label": "DSF Icons",
-      "path": "./file-icons.json"
-    }
-  ]
+      {
+        "id": "dsf-icons",
+        "label": "DSF Icons",
+        "path": "./file-icons.json"
+      }
+    ]
   }
 }

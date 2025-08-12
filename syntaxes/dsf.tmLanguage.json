@@ -15,42 +15,63 @@
     "comment": {
       "name": "comment.block.xml",
       "begin": "<!--",
-      "beginCaptures": { "0": { "name": "punctuation.definition.comment.begin.xml" } },
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.comment.begin.xml" }
+      },
       "end": "-->",
-      "endCaptures": { "0": { "name": "punctuation.definition.comment.end.xml" } }
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.comment.end.xml" }
+      }
     },
 
     "doctype": {
       "name": "meta.doctype.xml",
-      "begin": "<!DOCTYPE\\b",
-      "beginCaptures": { "0": { "name": "meta.tag.sgml.doctype.xml" } },
-      "end": ">",
-      "endCaptures": { "0": { "name": "meta.tag.sgml.doctype.xml" } }
+      "begin": "(<)!(DOCTYPE)\\b",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.tag.begin.xml" },
+        "2": { "name": "meta.tag.sgml.doctype.xml" }
+      },
+      "end": "(>)",
+      "endCaptures": {
+        "1": { "name": "punctuation.definition.tag.end.xml" }
+      }
     },
 
     "xml-decl": {
       "name": "meta.tag.preprocessor.xml",
-      "begin": "<\\?xml\\b",
-      "beginCaptures": { "0": { "name": "meta.tag.preprocessor.xml" } },
-      "end": "\\?>",
-      "endCaptures": { "0": { "name": "meta.tag.preprocessor.xml" } },
+      "begin": "(<)\\?xml\\b",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.tag.begin.xml" }
+      },
+      "end": "\\?(>)",
+      "endCaptures": {
+        "1": { "name": "punctuation.definition.tag.end.xml" }
+      },
       "patterns": [{ "include": "#xml-attributes" }]
     },
 
     "pi": {
       "name": "meta.tag.preprocessor.xml",
-      "begin": "<\\?(?!xml)\\b",
-      "beginCaptures": { "0": { "name": "meta.tag.preprocessor.xml" } },
-      "end": "\\?>",
-      "endCaptures": { "0": { "name": "meta.tag.preprocessor.xml" } }
+      "begin": "(<)\\?(?!xml)\\b",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.tag.begin.xml" }
+      },
+      "end": "\\?(>)",
+      "endCaptures": {
+        "1": { "name": "punctuation.definition.tag.end.xml" }
+      }
     },
 
     "cdata": {
-      "name": "string.unquoted.cdata.xml",
-      "begin": "<!\\[CDATA\\[",
-      "beginCaptures": { "0": { "name": "constant.other.inline-data.cdata.begin.xml" } },
-      "end": "\\]\\]>",
-      "endCaptures": { "0": { "name": "constant.other.inline-data.cdata.end.xml" } },
+      "name": "meta.section.cdata.xml",
+      "begin": "(<)!\\[CDATA\\[",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.tag.begin.xml" }
+      },
+      "end": "\\]\\](>)",
+      "endCaptures": {
+        "1": { "name": "punctuation.definition.tag.end.xml" }
+      },
       "patterns": [
         { "include": "#dsf-directive-block" },
         { "include": "#dsf-inline-commands" }
@@ -61,8 +82,18 @@
       "patterns": [
         { "name": "entity.other.attribute-name.xml", "match": "[:A-Za-z_][A-Za-z0-9_\\-\\.]*" },
         { "name": "punctuation.separator.key-value.xml", "match": "=" },
-        { "name": "string.quoted.double.xml", "begin": "\"", "end": "\"", "patterns": [{ "match": "\\\\.", "name": "constant.character.escape.xml" }] },
-        { "name": "string.quoted.single.xml", "begin": "'", "end": "'", "patterns": [{ "match": "\\\\.", "name": "constant.character.escape.xml" }] }
+        {
+          "name": "string.quoted.double.xml",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [{ "match": "\\\\.", "name": "constant.character.escape.xml" }]
+        },
+        {
+          "name": "string.quoted.single.xml",
+          "begin": "'",
+          "end": "'",
+          "patterns": [{ "match": "\\\\.", "name": "constant.character.escape.xml" }]
+        }
       ]
     },
 
@@ -70,19 +101,26 @@
       "patterns": [
         {
           "name": "meta.tag.xml",
-          "begin": "<\\s*([:A-Za-z_][A-Za-z0-9_\\-\\.]*)",
+          "begin": "(<)\\s*([:A-Za-z_][A-Za-z0-9_\\-\\.]*)",
           "beginCaptures": {
-            "0": { "name": "punctuation.definition.tag.begin.xml" },
-            "1": { "name": "entity.name.tag.xml" }
+            "1": { "name": "punctuation.definition.tag.begin.xml" },
+            "2": { "name": "entity.name.tag.xml" }
           },
-          "end": "/?\\s*>",
-          "endCaptures": { "0": { "name": "punctuation.definition.tag.end.xml" } },
+          "end": "(/?)(>)",
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.tag.end.xml" },
+            "2": { "name": "punctuation.definition.tag.end.xml" }
+          },
           "patterns": [{ "include": "#xml-attributes" }]
         },
         {
           "name": "meta.tag.xml",
-          "match": "<\\s*/\\s*([:A-Za-z_][A-Za-z0-9_\\-\\.]*)\\s*>",
-          "captures": { "1": { "name": "entity.name.tag.xml" } }
+          "match": "(<)\\s*/\\s*([:A-Za-z_][A-Za-z0-9_\\-\\.]*)\\s*(>)",
+          "captures": {
+            "1": { "name": "punctuation.definition.tag.begin.xml" },
+            "2": { "name": "entity.name.tag.xml" },
+            "3": { "name": "punctuation.definition.tag.end.xml" }
+          }
         }
       ]
     },
@@ -92,16 +130,30 @@
         {
           "name": "meta.directive.dsf",
           "begin": "(:[A-Z][A-Z0-9_]*)\\b",
-          "beginCaptures": { "1": { "name": "keyword.other.dsf" } },
+          "beginCaptures": {
+            "1": { "name": "keyword.other.dsf" }
+          },
           "end": "\\.",
-          "endCaptures": { "0": { "name": "punctuation.terminator.directive.dsf" } },
+          "endCaptures": {
+            "0": { "name": "punctuation.terminator.directive.dsf" }
+          },
           "applyEndPatternLast": true,
           "patterns": [
             { "match": "[ \\t]+", "name": "text.whitespace" },
-            { "match": "\\b([A-Z][A-Z0-9_]*)\\b", "name": "variable.parameter.dsf" },
-            { "match": "=", "name": "punctuation.separator.key-value.dsf" },
-            { "begin": "\"", "end": "\"", "name": "string.quoted.double.dsf", "patterns": [{ "match": "\\\\.", "name": "constant.character.escape.dsf" }] },
-            { "begin": "'", "end": "'", "name": "string.quoted.single.dsf", "patterns": [{ "match": "\\\\.", "name": "constant.character.escape.dsf" }] },
+            { "match": "\\b([A-Z][A-Z0-9_]*)\\b", "name": "entity.other.attribute-name.xml" },
+            { "match": "=", "name": "punctuation.separator.key-value.xml" },
+            {
+              "begin": "\"",
+              "end": "\"",
+              "name": "string.quoted.double.xml",
+              "patterns": [{ "match": "\\\\.", "name": "constant.character.escape.xml" }]
+            },
+            {
+              "begin": "'",
+              "end": "'",
+              "name": "string.quoted.single.xml",
+              "patterns": [{ "match": "\\\\.", "name": "constant.character.escape.xml" }]
+            },
             { "match": "[^\\.\\s]+", "name": "string.unquoted.dsf" }
           ]
         }
@@ -117,21 +169,25 @@
         {
           "name": "meta.inline-command.dsf",
           "begin": "(\\.(?:dp)[a-z][a-z0-9_]*)\\b(?=\\s+(?![\\.:])\\S)",
-          "beginCaptures": { "1": { "name": "keyword.other.dsf" } },
+          "beginCaptures": {
+            "1": { "name": "keyword.other.dsf" }
+          },
           "end": "$",
           "patterns": [
             { "match": "[ \\t]+", "name": "text.whitespace" },
-            { "match": ".+", "name": "string.unquoted.value.dsf" }
+            { "match": ".+", "name": "string.unquoted.dsf" }
           ]
         },
         {
           "name": "meta.inline-command.dsf",
           "begin": "(\\.(?!dp)[a-z][a-z0-9_]*)\\b(?=\\s|$)",
-          "beginCaptures": { "1": { "name": "keyword.other.dsf" } },
+          "beginCaptures": {
+            "1": { "name": "keyword.other.dsf" }
+          },
           "end": "$",
           "patterns": [
             { "match": "[ \\t]+", "name": "text.whitespace" },
-            { "match": ".+", "name": "string.unquoted.value.dsf" }
+            { "match": ".+", "name": "string.unquoted.dsf" }
           ]
         }
       ]

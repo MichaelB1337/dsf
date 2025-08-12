@@ -1,8 +1,15 @@
 {
   "name": "dsf",
-  "displayName": "dsf",
+  "icon": "images/icon.png",
+  "displayName": "DSF Highlighter",
+  "publisher": "michaelbergmann",
   "description": "Syntax highlighting for .dsf files",
   "version": "0.0.1",
+  "license": "MIT",
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/MichaelB1337/dsf"
+  },
   "engines": {
     "vscode": "^1.103.0"
   },

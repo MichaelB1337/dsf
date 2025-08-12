@@ -4,7 +4,7 @@
   "displayName": "DSF Highlighter",
   "publisher": "michaelbergmann",
   "description": "Syntax highlighting for .dsf files",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -4,7 +4,7 @@
   "displayName": "DSF Highlighter",
   "publisher": "michaelbergmann",
   "description": "Syntax highlighting for .dsf files",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -17,7 +17,9 @@
     "Programming Languages"
   ],
   "main": "./extension.js",
-  "activationEvents": ["onLanguage:dsf"],
+  "activationEvents": [
+    "onLanguage:dsf"
+  ],
   "contributes": {
     "languages": [
       {

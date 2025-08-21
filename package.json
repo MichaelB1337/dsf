@@ -16,6 +16,8 @@
   "categories": [
     "Programming Languages"
   ],
+  "main": "./extension.js",
+  "activationEvents": ["onLanguage:dsf"],
   "contributes": {
     "languages": [
       {
